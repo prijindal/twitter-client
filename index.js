@@ -36,7 +36,7 @@ function createWindow () {
 
 let server;
 ipcMain.on('start:express', () => {
-  const expressApp = require('./app/app');
+  const expressApp = require('./server/app');
   server = expressApp.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
   })

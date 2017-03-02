@@ -1,6 +1,6 @@
 const express = require('express');
 const passport = require('passport');
-var passportTwitter = require('./server/auth/twitter');
+var passportTwitter = require('./auth/twitter');
 
 const session = require('express-session');
 
@@ -8,7 +8,7 @@ const app = express();
 
 app.set('view engine', 'pug');
 
-app.set('views', 'app/views')
+app.set('views', 'server/views')
 
 app.use(session({
   secret: 'my secret',
