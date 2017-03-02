@@ -34,17 +34,62 @@ function getClient() {
   });
 }
 
-function getTweets() {
-  client = client || window.client
-  var params = {screen_name: 'nodejs'};
-  client.get('statuses/user_timeline', params, function(error, tweets, response) {
-    if (!error) {
-      console.log(tweets);
-    }
+function apiGetRequest(url) {
+  return new Promise(function(resolve, reject) {
+    client = client || window.client
+    var params = {screen_name: 'nodejs'};
+    client.get(url, params, function(error, body, response) {
+      if (!error) {
+        resolve(body);
+      } else {
+        console.error(error);
+        reject(error)
+      }
+    });
   });
+}
+
+function renderTweets(tweets, refresh=true) {
+  if (!tweets) return ;
+  let section = jQuery('#feed');
+  if (refresh) {
+    section.html('');
+  }
+  tweets.forEach((tweet) => {
+    // console.log(tweet);
+    html=`
+    <div class="content" id="${tweet.id}">
+      <img src="${tweet.user.profile_image_url}" alt="content-user" class="user-pic">
+      <h2>${tweet.user.name}</h2>
+      <p>${tweet.text}</p>
+      <div class="images">
+        ${tweet.extended_entities ? tweet.extended_entities.media.map(media =>
+          `<img src="${media.media_url}" alt="content-image" class="content-image">`
+        ): '<img />'}
+      </div>
+    </div>
+    `
+    section.append(html);
+  })
+  localforage.setItem('tweets', tweets);
+}
+
+function renderProfile(account) {
+  if(!account) return ;
+  // console.log(account)
+  jQuery('#profile-pic')[0].src = account.profile_image_url
+  localforage.setItem('account', account)
 }
 
 getClient()
 .then(() => {
-  getTweets()
+  apiGetRequest('statuses/home_timeline')
+  .then(renderTweets)
+  apiGetRequest('account/verify_credentials')
+  .then(renderProfile)
 })
+
+localforage.getItem('tweets')
+.then(renderTweets)
+localforage.getItem('account')
+.then(renderProfile)

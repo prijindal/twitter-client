@@ -3,9 +3,22 @@
   <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
   </head>
   <body>
-    <h1>App</h1>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#" id="refresh"><img src="/img/refresh.png"></a></li>
+          <li><a href="#" id="tweet">Tweet</a></li>
+          <li><a href="#"><img id="profile-pic"></a></li>
+        </ul>
+      </nav>
+    </header>
+    <section id="feed">
+      <div />
+    </section>
     <script src="js/helpers/getOauth.js" charset="utf-8"></script>
     <script src="js/app.js" charset="utf-8"></script>
   </body>

@@ -7,6 +7,7 @@ const session = require('express-session');
 const app = express();
 
 app.use('/css', express.static('css'));
+app.use('/img', express.static('img'));
 app.use('/js', express.static('js'));
 app.use('/node_modules', express.static('node_modules'));
 app.set('view engine', 'pug');

@@ -10,7 +10,7 @@ const PORT = 3000;
 
 function createWindow () {
   // Create the browser window.
-  win = new BrowserWindow({width: 480, height: 600})
+  win = new BrowserWindow({width: 500, height: 600})
 
   expressApp.listen(PORT, () => {
     console.log('Listening')
