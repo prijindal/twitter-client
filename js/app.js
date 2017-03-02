@@ -85,7 +85,10 @@ function refreshTweets() {
   jQuery('#refresh').addClass('rotate');
   apiGetRequest('statuses/home_timeline')
   .then((tweets) => {
+    jQuery('#refresh').removeClass('rotate');
     renderTweets(tweets);
+  })
+  .catch((error) => {
     jQuery('#refresh').removeClass('rotate');
   })
 }
