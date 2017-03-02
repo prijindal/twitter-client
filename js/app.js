@@ -3,11 +3,7 @@ const Twitter = require('twitter')
 const localforage = require('localforage')
 const jQuery = require('jquery')
 const getOauth = require('../js/helpers/getOauth');
-
-const config = {
-  consumerKey: '9NjY4wu59Mz7PlAOUej6PFBlb',
-  consumerSecret: 'Rp6ujmVuA9dhX47nuxvPUNXoWdTW4FtrZubiMHQP7ycqmRTz99',
-};
+const config = require('../config').twitter;
 
 function getClient() {
   return new Promise(function(resolve, reject) {

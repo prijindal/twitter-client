@@ -1,4 +1,4 @@
-var CONFIG = {
+const config = {
   twitter: {
     consumerKey: '9NjY4wu59Mz7PlAOUej6PFBlb',
     consumerSecret: 'Rp6ujmVuA9dhX47nuxvPUNXoWdTW4FtrZubiMHQP7ycqmRTz99',
@@ -6,4 +6,4 @@ var CONFIG = {
   }
 };
 
-module.exports = CONFIG;
+module.exports = config

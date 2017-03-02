@@ -1,7 +1,7 @@
 var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
 
-var config = require('../config');
+var config = require('../../config');
 
 passport.use(new TwitterStrategy({
     consumerKey: config.twitter.consumerKey,
