@@ -28,6 +28,10 @@ nav {
 	background-color: #1da1f2;
 	color: #fff;
 	text-align: center;
+	-webkit-app-region: drag;
+	position: fixed;
+	top:0;
+	width: 100%;
 }
 
 nav a{
@@ -35,6 +39,7 @@ nav a{
 	color: #fff;
 	font-weight: 600;
 	font-size: 1.3em;
+	-webkit-app-region: no-drag;
 }
 
 nav ul li img {
@@ -61,6 +66,10 @@ nav ul li {
 /**********************************************************
 CONTENT
 **********************************************************/
+
+#feed {
+	margin-top: 70px;
+}
 
 .content {
 	background: #dad8d8;
@@ -95,5 +104,3 @@ section div h2 {
 	padding-top: 10px;
 	padding-left: 80px;
 }
-
-

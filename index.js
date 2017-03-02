@@ -10,10 +10,14 @@ const PORT = 3000;
 
 function createWindow () {
   // Create the browser window.
-  win = new BrowserWindow({width: 500, height: 600})
+  win = new BrowserWindow({
+    width: 500,
+    height: 600,
+    frame: false,
+    resizable: false,
+  })
 
   expressApp.listen(PORT, () => {
-    console.log('Listening')
     win.loadURL(url.format({
       pathname: `127.0.0.1:${PORT}`,
       protocol: 'http:',
