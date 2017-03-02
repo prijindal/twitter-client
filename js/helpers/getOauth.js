@@ -1,3 +1,5 @@
+const localforage = require('localforage')
+
 function getOauth() {
   return new Promise(function(resolve, reject) {
     localforage.ready()
@@ -12,3 +14,5 @@ function getOauth() {
     })
   });
 }
+
+module.exports = getOauth

@@ -6,11 +6,9 @@ const session = require('express-session');
 
 const app = express();
 
-app.use('/css', express.static('css'));
-app.use('/img', express.static('img'));
-app.use('/js', express.static('js'));
-app.use('/node_modules', express.static('node_modules'));
 app.set('view engine', 'pug');
+
+app.set('views', 'app/views')
 
 app.use(session({
   secret: 'my secret',
@@ -28,16 +26,6 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(user, done) {
   done(null, user);
 });
-
-app.get('/', function (req, res) {
-  res.render('index')
-})
-app.get('/login', function (req, res) {
-  res.render('login')
-})
-app.get('/app', function (req, res) {
-  res.render('app')
-})
 
 app.get('/auth/twitter', passportTwitter.authenticate('twitter'));
 

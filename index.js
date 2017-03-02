@@ -1,8 +1,6 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
 const url = require('url')
-
-const expressApp = require('./app');
 
 let win
 
@@ -13,17 +11,15 @@ function createWindow () {
   win = new BrowserWindow({
     width: 500,
     height: 600,
-    frame: false,
-    resizable: false,
+    // frame: false,
+    // resizable: false,
   })
 
-  expressApp.listen(PORT, () => {
-    win.loadURL(url.format({
-      pathname: `127.0.0.1:${PORT}`,
-      protocol: 'http:',
-      slashes: true
-    }))
-  })
+  win.loadURL(url.format({
+    pathname: path.join(__dirname, 'html/', 'index.html'),
+    protocol: 'file:',
+    slashes: true
+  }))
   // and load the index.html of the app.
 
   // Open the DevTools.
@@ -37,6 +33,21 @@ function createWindow () {
     win = null
   })
 }
+
+let server;
+ipcMain.on('start:express', () => {
+  const expressApp = require('./app/app');
+  server = expressApp.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`)
+  })
+})
+
+ipcMain.on('end:express', () => {
+  if (server) {
+    console.log(`Closing on port ${PORT}`)
+    server.close();
+  }
+})
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

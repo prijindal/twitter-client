@@ -1,0 +1,6 @@
+script.
+  oauthToken="#{accessToken}";
+  oauthSecret="#{refreshToken}";
+  if (window.opener) {
+    window.opener.postMessage({ oauthToken, oauthSecret });
+  }
