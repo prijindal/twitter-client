@@ -81,10 +81,18 @@ function renderProfile(account) {
   localforage.setItem('account', account)
 }
 
+function refreshTweets() {
+  jQuery('#refresh').addClass('rotate');
+  apiGetRequest('statuses/home_timeline')
+  .then((tweets) => {
+    renderTweets(tweets);
+    jQuery('#refresh').removeClass('rotate');
+  })
+}
+
 getClient()
 .then(() => {
-  apiGetRequest('statuses/home_timeline')
-  .then(renderTweets)
+  refreshTweets();
   apiGetRequest('account/verify_credentials')
   .then(renderProfile)
 })
