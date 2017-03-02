@@ -2,18 +2,25 @@ const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const url = require('url')
 
+const expressApp = require('./app');
+
 let win
+
+const PORT = 3000;
 
 function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({width: 480, height: 600})
 
+  expressApp.listen(PORT, () => {
+    console.log('Listening')
+    win.loadURL(url.format({
+      pathname: `127.0.0.1:${PORT}`,
+      protocol: 'http:',
+      slashes: true
+    }))
+  })
   // and load the index.html of the app.
-  win.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
 
   // Open the DevTools.
   // win.webContents.openDevTools()
