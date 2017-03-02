@@ -1,0 +1,99 @@
+h1 {
+	text-align: center;
+}
+
+.button {
+	background-color: #1da1f2;
+	/*border: #ffffff;*/
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	width: 100px;
+	padding: 12px 2px;
+	font-size: 1.5em;
+}
+
+#click {
+	text-align: center;
+	margin-top: 40px;
+}
+
+
+/**********************************************************
+NAVIGATION
+**********************************************************/
+
+nav {
+	background-color: #1da1f2;
+	color: #fff;
+	text-align: center;
+}
+
+nav a{
+	text-decoration: none;
+	color: #fff;
+	font-weight: 600;
+	font-size: 1.3em;
+}
+
+nav ul li img {
+	max-width: 40px;
+}
+
+
+nav ul li {
+	list-style: none;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 10px;
+	padding: 10px 0;
+}
+
+#profile-pic {
+	border-radius: 50%;
+}
+
+#tweet {
+	text-align: center;
+}
+
+/**********************************************************
+CONTENT
+**********************************************************/
+
+.content {
+	background: #dad8d8;
+}
+
+.content p {
+	max-width: 90%;
+	font-size: 0.9em;
+	margin-top: -15px;
+	padding-left: 80px;
+}
+
+.user-pic {
+	max-width: 50px;
+	float: left;
+	margin-bottom: 30px;
+	padding: 10px;
+	border-radius: 30%;
+}
+
+
+.images {
+	padding-left: 70px;
+}
+
+.content-image {
+	max-width: 400px;
+	border-radius: 5%;
+}
+
+section div h2 {
+	padding-top: 10px;
+	padding-left: 80px;
+}
+
+

@@ -9,6 +9,8 @@ const path = require('path');
 const ROOT_MODULES = path.join(__dirname, '../../../../../')
 
 const Twitter = require(ROOT_MODULES + 'twitter')
+const localforage = require(ROOT_MODULES + 'localforage')
+const jQuery = require(ROOT_MODULES + 'jquery')
 
 function getClient() {
   return new Promise(function(resolve, reject) {
