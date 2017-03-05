@@ -172,7 +172,7 @@ function initScroll() {
 }
 
 function openUrl(url) {
-  window.open(url)
+  window.open(url, url)
 }
 
 initScroll();
