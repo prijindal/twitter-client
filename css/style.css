@@ -144,6 +144,18 @@ CONTENT
 	margin-top: 15px;
 }
 
+.retweet {
+	margin-top: 15px;
+}
+
+.retweet .retweeter {
+	padding: 5px;
+}
+
+.retweet .content {
+	margin-top: 0;
+}
+
 .content p {
 	max-width: 90%;
 	font-size: 0.9em;

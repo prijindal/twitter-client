@@ -1,4 +1,11 @@
-<div class="content" id="{{tweet.id}}">
-  <div>{{tweet.user.name}} retweeted</div>
+<div class="content retweet" id="{{tweet.id}}">
+  <div class="retweeter">
+    <a
+      href="#"
+      onclick="openUrl('https://twitter.com/{{tweet.user.screen_name}}')"
+    >{{tweet.user.name}}
+    </a>&nbsp;
+    <span>retweeted</span>
+  </div>
   {{> feed}}
 </div>

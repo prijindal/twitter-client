@@ -59,6 +59,33 @@ const COUNT = 15;
 let max_id;
 let loading;
 
+function mentionParser(mention, text) {
+  let mentionString = text.substring(mention.indices[0], mention.indices[1])
+  return { mentionString, mention };
+}
+
+function mentionTextReplacer({mentionString, mention}, text, url) {
+  return text.replace(mentionString,
+    `<a href="#"
+        onclick="openUrl('${url}')">${mentionString}
+      </a>`
+    )
+}
+
+function getText(tweet) {
+  const { entities } = tweet
+  let { text } = tweet
+  const { hashtags, symbols, urls, user_mentions } = entities;
+  let mentionsReplacement = user_mentions.map(data => mentionParser(data, text));
+  let urlsReplacement = urls.map(data => mentionParser(data, text));
+
+  mentionsReplacement.forEach((data) => {text = mentionTextReplacer(data, text, `https://twitter.com/${data.mention.screen_name}`)});
+  urlsReplacement.forEach((data) => {text = mentionTextReplacer(data, text, data.mention.expanded_url)});
+
+  console.log(hashtags, symbols, urls)
+  return text
+}
+
 function renderTweets(tweets, refresh=true) {
   if (!tweets) return ;
   let section = jQuery('#feed');
@@ -66,13 +93,13 @@ function renderTweets(tweets, refresh=true) {
     section.html('');
   }
   tweets.forEach((tweet) => {
-    console.log(tweet);
-    let html = mustache.render(feed, { tweet });
+    let html;
     if (tweet.retweeted_status) {
-      let feedHTML = mustache.render(feed, { tweet: tweet.retweeted_status });
+      let feedHTML = mustache.render(feed, { tweet: tweet.retweeted_status }, { text:getText(tweet.retweeted_status) });
       html = mustache.render(retweet, { tweet } ,{ feed: feedHTML })
+    } else {
+      html = mustache.render(feed, { tweet },{ text: getText(tweet) });
     }
-    console.log(html);
     section.append(html);
   })
   if (!refresh) {
@@ -142,6 +169,10 @@ function initScroll() {
       }
     }
   });
+}
+
+function openUrl(url) {
+  window.open(url)
 }
 
 initScroll();
