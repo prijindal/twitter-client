@@ -2,9 +2,12 @@ const path = require('path');
 const Twitter = require('twitter')
 const localforage = require('localforage')
 const jQuery = require('jquery')
+const mustache = require('mustache');
 const {ipcRenderer} = require('electron')
 const getOauth = require('../js/helpers/getOauth');
 const config = require('../config').twitter;
+
+const feed = require('../')
 
 function getClient() {
   return new Promise(function(resolve, reject) {
@@ -51,18 +54,7 @@ function renderTweets(tweets, refresh=true) {
   }
   tweets.forEach((tweet) => {
     // console.log(tweet);
-    html=`
-    <div class="content" id="${tweet.id}">
-      <img src="${tweet.user.profile_image_url}" alt="content-user" class="user-pic">
-      <h2>${tweet.user.name}</h2>
-      <p>${tweet.text}</p>
-      <div class="images">
-        ${tweet.extended_entities ? tweet.extended_entities.media.map(media =>
-          `<img src="${media.media_url}" alt="content-image" class="content-image">`
-        ): '<img />'}
-      </div>
-    </div>
-    `
+    mustache.render(template: require())
     section.append(html);
   })
   localforage.setItem('tweets', tweets);

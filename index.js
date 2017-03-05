@@ -54,12 +54,8 @@ ipcMain.on('end:express', () => {
 
 ipcMain.on('logout', () => {
   session.defaultSession.cookies.remove('*', '*', () => {})
-  session.defaultSession.clearCache((err, data) => {
-    console.log(err, data)
-  })
-  session.defaultSession.clearStorageData({}, (err, data) => {
-    console.log(err, data)
-  })
+  session.defaultSession.clearCache(() => {})
+  session.defaultSession.clearStorageData(() => {})
 })
 
 // This method will be called when Electron has finished
