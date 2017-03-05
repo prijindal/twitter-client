@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const Twitter = require('twitter')
 const localforage = require('localforage')
 const jQuery = require('jquery')
@@ -7,7 +8,7 @@ const {ipcRenderer} = require('electron')
 const getOauth = require('../js/helpers/getOauth');
 const config = require('../config').twitter;
 
-// const feed = require('./partials/feed.html');
+const feed = fs.readFileSync(path.join(__dirname, '/partials/feed.html'), 'utf8')
 
 function getClient() {
   return new Promise(function(resolve, reject) {
@@ -54,15 +55,7 @@ function renderTweets(tweets, refresh=true) {
   }
   tweets.forEach((tweet) => {
     // console.log(tweet);
-    let html = mustache.render(`<div class="content" id="{{tweet.id}}">
-      <img src="{{tweet.user.profile_image_url}}" alt="content-user" class="user-pic">
-      <h2>{{tweet.user.name}}</h2>
-      <p>{{tweet.text}}</p>
-      <div class="images">
-        <img src="{{tweet.extended_entities.media[0].media_url}}" alt="content-image" class="content-image">
-      </div>
-    </div>
-`, { tweet });
+    let html = mustache.render(feed, { tweet });
     console.log(html)
     section.append(html);
   })

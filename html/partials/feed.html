@@ -2,9 +2,12 @@
   <img src="{{tweet.user.profile_image_url}}" alt="content-user" class="user-pic">
   <h2>{{tweet.user.name}}</h2>
   <p>{{tweet.text}}</p>
-  <!-- <div class="images">
-    ${tweet.extended_entities ? tweet.extended_entities.media.map(media =>
-      `<img src="${media.media_url}" alt="content-image" class="content-image">`
-    ): '<img />'}
-  </div> -->
+  <div class="images">
+    {{#tweet.extended_entities.media}}
+      <img src="{{media_url}}" alt="content-image" class="content-image">
+    {{/tweet.extended_entities.media}}
+    {{^tweet.extended_entities.media}}
+      <img />
+    {{/tweet.extended_entities.media}}
+  </div>
 </div>
