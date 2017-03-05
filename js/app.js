@@ -32,10 +32,10 @@ function getClient() {
   });
 }
 
-function apiGetRequest(url) {
+function apiGetRequest(url, params) {
   return new Promise(function(resolve, reject) {
     client = client || window.client
-    var params = {screen_name: 'nodejs'};
+    params = Object.assign({}, {screen_name: 'nodejs'}, params)
     client.get(url, params, function(error, body, response) {
       if (!error) {
         resolve(body);
@@ -47,6 +47,17 @@ function apiGetRequest(url) {
   });
 }
 
+function renderProfile(account) {
+  if(!account) return ;
+  // console.log(account)
+  jQuery('#profile-pic')[0].src = account.profile_image_url
+  localforage.setItem('account', account)
+}
+
+const COUNT = 15;
+let max_id;
+let loading;
+
 function renderTweets(tweets, refresh=true) {
   if (!tweets) return ;
   let section = jQuery('#feed');
@@ -56,28 +67,37 @@ function renderTweets(tweets, refresh=true) {
   tweets.forEach((tweet) => {
     // console.log(tweet);
     let html = mustache.render(feed, { tweet });
-    console.log(html)
     section.append(html);
   })
-  localforage.setItem('tweets', tweets);
-}
-
-function renderProfile(account) {
-  if(!account) return ;
-  // console.log(account)
-  jQuery('#profile-pic')[0].src = account.profile_image_url
-  localforage.setItem('account', account)
+  if (!refresh) {
+    localforage.getItem('tweets')
+    .then((oldTweets) => {
+      localforage.setItem('tweets', [
+        ...oldTweets,
+        ...tweets,
+      ])
+    })
+  } else {
+    localforage.setItem('tweets', tweets);
+  }
+  max_id = tweets[tweets.length - 1].id
 }
 
 function refreshTweets() {
-  jQuery('#refresh').addClass('rotate');
-  apiGetRequest('statuses/home_timeline')
+  loading = true;
+  apiGetRequest('statuses/home_timeline', { count: COUNT })
   .then((tweets) => {
-    jQuery('#refresh').removeClass('rotate');
-    renderTweets(tweets);
+    renderTweets(tweets, true);
+    loading = false;
   })
-  .catch((error) => {
-    jQuery('#refresh').removeClass('rotate');
+}
+
+function loadNew() {
+  loading = true;
+  apiGetRequest('statuses/home_timeline', { count: COUNT, max_id  })
+  .then((tweets) => {
+    renderTweets(tweets, false);
+    loading = false;
   })
 }
 
@@ -100,3 +120,22 @@ localforage.getItem('tweets')
 .then(renderTweets)
 localforage.getItem('account')
 .then(renderProfile)
+
+function initScroll() {
+  const documentEl = jQuery(document)
+  documentEl.on('scroll', () => {
+    let scrollTop = documentEl.scrollTop()
+    let height = documentEl.height();
+    if(height - scrollTop < 1000) {
+      if (!loading) {
+        console.log('Loading New');
+        loadNew();
+      } else {
+        console.log('Already Loading');
+      }
+    }
+  });
+  console.dir(documentEl)
+}
+
+initScroll();
