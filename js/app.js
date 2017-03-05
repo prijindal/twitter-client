@@ -85,18 +85,22 @@ function renderTweets(tweets, refresh=true) {
 
 function refreshTweets() {
   loading = true;
+  jQuery('#loading-bar').removeClass('hidden')
   apiGetRequest('statuses/home_timeline', { count: COUNT })
   .then((tweets) => {
     renderTweets(tweets, true);
     loading = false;
+    jQuery('#loading-bar').addClass('hidden')
   })
 }
 
 function loadNew() {
   loading = true;
+  jQuery('#loading-bar').removeClass('hidden')
   apiGetRequest('statuses/home_timeline', { count: COUNT, max_id  })
   .then((tweets) => {
     renderTweets(tweets, false);
+    jQuery('#loading-bar').addClass('hidden')
     loading = false;
   })
 }
