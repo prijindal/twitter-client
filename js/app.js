@@ -7,7 +7,7 @@ const {ipcRenderer} = require('electron')
 const getOauth = require('../js/helpers/getOauth');
 const config = require('../config').twitter;
 
-const feed = require('../')
+// const feed = require('./partials/feed.html');
 
 function getClient() {
   return new Promise(function(resolve, reject) {
@@ -54,7 +54,16 @@ function renderTweets(tweets, refresh=true) {
   }
   tweets.forEach((tweet) => {
     // console.log(tweet);
-    mustache.render(template: require())
+    let html = mustache.render(`<div class="content" id="{{tweet.id}}">
+      <img src="{{tweet.user.profile_image_url}}" alt="content-user" class="user-pic">
+      <h2>{{tweet.user.name}}</h2>
+      <p>{{tweet.text}}</p>
+      <div class="images">
+        <img src="{{tweet.extended_entities.media[0].media_url}}" alt="content-image" class="content-image">
+      </div>
+    </div>
+`, { tweet });
+    console.log(html)
     section.append(html);
   })
   localforage.setItem('tweets', tweets);
