@@ -9,6 +9,7 @@ const getOauth = require('../js/helpers/getOauth');
 const config = require('../config').twitter;
 
 const feed = fs.readFileSync(path.join(__dirname, '/partials/feed.html'), 'utf8')
+const retweet = fs.readFileSync(path.join(__dirname, '/partials/retweet.html'), 'utf8')
 
 function getClient() {
   return new Promise(function(resolve, reject) {
@@ -65,8 +66,13 @@ function renderTweets(tweets, refresh=true) {
     section.html('');
   }
   tweets.forEach((tweet) => {
-    // console.log(tweet);
+    console.log(tweet);
     let html = mustache.render(feed, { tweet });
+    if (tweet.retweeted_status) {
+      let feedHTML = mustache.render(feed, { tweet: tweet.retweeted_status });
+      html = mustache.render(retweet, { tweet } ,{ feed: feedHTML })
+    }
+    console.log(html);
     section.append(html);
   })
   if (!refresh) {
@@ -132,14 +138,10 @@ function initScroll() {
     let height = documentEl.height();
     if(height - scrollTop < 1000) {
       if (!loading) {
-        console.log('Loading New');
         loadNew();
-      } else {
-        console.log('Already Loading');
       }
     }
   });
-  console.dir(documentEl)
 }
 
 initScroll();
