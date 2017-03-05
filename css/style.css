@@ -68,25 +68,25 @@ nav {
 
 
 nav li {
-	display: inline-block; 
+	display: inline-block;
 	width: 100px;
 }
 
 
-nav a{	
+nav a{
 	display: block;
 	color: #000;
 	font-weight: 600;
 	font-size: 1em;
 	-webkit-app-region: no-drag;
-	border-bottom: 4px solid #fff;  
+	border-bottom: 4px solid #fff;
 	padding-top: 5px;
 }
 
 nav a:hover{
 	padding-top: 0;
 	border-bottom: 4px solid #1da1f2;
-	font-size: 1.3em;	
+	font-size: 1.3em;
 }
 
 nav img {
@@ -96,7 +96,40 @@ nav img {
 	max-height: 30px;
 }
 
+/*********************************************************
+LOADING BAR
+**********************************************************/
+.loading-bar {
+	margin-top: 0;
+	width: 100%;
+	height: 10px;
+}
 
+.loading-bar.hidden {
+	display: none;
+}
+
+.loading-bar .loading-inner {
+	margin-top: 0;
+	height: 5px;
+	width: 50%;
+	border-radius: 2px;
+	background: #1da1f2;
+	position: relative;
+	animation: slide-loop 1s infinite linear;
+}
+
+@keyframes slide-loop {
+	0% {
+		left: -100%;
+	}
+	50% {
+		left: 50%;
+	}
+	100% {
+		left: 100%;
+	}
+}
 
 /**********************************************************
 CONTENT
