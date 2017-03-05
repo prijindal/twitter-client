@@ -75,16 +75,16 @@ nav a{
 	display: block;
 	color: #000;
 	font-weight: 600;
-	font-size: 1.3em;
+	font-size: 1em;
 	-webkit-app-region: no-drag;
 	border-bottom: 4px solid #fff;  
-	padding-top: 4px;
+	padding-top: 5px;
 }
 
 nav a:hover{
 	padding-top: 0;
 	border-bottom: 4px solid #1da1f2;
-	font-size: 1.5em;	
+	font-size: 1.3em;	
 }
 
 nav img {
@@ -101,7 +101,7 @@ CONTENT
 **********************************************************/
 
 #feed {
-	margin-top: 70px;
+	margin-top: 140px;
 }
 
 .content {
