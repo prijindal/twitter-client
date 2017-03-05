@@ -1,4 +1,4 @@
-const {app, BrowserWindow, ipcMain} = require('electron')
+const {app, BrowserWindow, ipcMain, session} = require('electron')
 const path = require('path')
 const url = require('url')
 
@@ -11,8 +11,8 @@ function createWindow () {
   win = new BrowserWindow({
     width: 500,
     height: 600,
-    frame: false,
-    resizable: false,
+    // frame: false,
+    // resizable: false,
   })
 
   win.loadURL(url.format({
@@ -23,7 +23,7 @@ function createWindow () {
   // and load the index.html of the app.
 
   // Open the DevTools.
-  // win.webContents.openDevTools()
+  win.webContents.openDevTools()
 
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -36,17 +36,30 @@ function createWindow () {
 
 let server;
 ipcMain.on('start:express', () => {
-  const expressApp = require('./server/app');
-  server = expressApp.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`)
-  })
+  if (!server) {
+    const expressApp = require('./server/app');
+    server = expressApp.listen(PORT, () => {
+      console.log(`Listening on port ${PORT}`)
+    })
+  }
 })
 
 ipcMain.on('end:express', () => {
   if (server) {
     console.log(`Closing on port ${PORT}`)
     server.close();
+    server = null;
   }
+})
+
+ipcMain.on('logout', () => {
+  session.defaultSession.cookies.remove('*', '*', () => {})
+  session.defaultSession.clearCache((err, data) => {
+    console.log(err, data)
+  })
+  session.defaultSession.clearStorageData({}, (err, data) => {
+    console.log(err, data)
+  })
 })
 
 // This method will be called when Electron has finished

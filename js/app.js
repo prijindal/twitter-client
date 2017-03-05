@@ -2,6 +2,7 @@ const path = require('path');
 const Twitter = require('twitter')
 const localforage = require('localforage')
 const jQuery = require('jquery')
+const {ipcRenderer} = require('electron')
 const getOauth = require('../js/helpers/getOauth');
 const config = require('../config').twitter;
 
@@ -83,6 +84,14 @@ function refreshTweets() {
   })
   .catch((error) => {
     jQuery('#refresh').removeClass('rotate');
+  })
+}
+
+function logout() {
+  localforage.clear()
+  .then(() => {
+    ipcRenderer.send('logout');
+    window.location.pathname = __dirname + '/index.html'
   })
 }
 
