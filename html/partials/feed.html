@@ -1,7 +1,7 @@
 <div class="content" id="{{tweet.id}}">
   <img src="{{tweet.user.profile_image_url}}" alt="content-user" class="user-pic">
   <h2>{{tweet.user.name}}</h2>
-  <p>{{tweet.text}}</p>
+  <p>{{> text}}</p>
   <div class="images">
     {{#tweet.extended_entities.media}}
       <img src="{{media_url}}" alt="content-image" class="content-image">
