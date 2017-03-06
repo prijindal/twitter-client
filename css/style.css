@@ -141,26 +141,35 @@ CONTENT
 }
 
 .content {
-	background: #dad8d8;
-	margin-top: 15px;
+	background: #e6eae3;
+	margin-top: 5px;
 }
 
 .retweet {
-	margin-top: 15px;
+	padding-top: 8px;
 }
 
 .retweet .retweeter {
-	padding: 5px;
+	padding-left: 80px;
+	border: 2px solid #000;
+	font-size: 0.8em;
+	color: #2f2e2e;
 }
 
-.retweet .content {
-	margin-top: 0;
+.retweet .retweeter a{
+	text-decoration: none;
+	color: #2f2e2e;
 }
+
+/*.retweet .content {
+	margin-top: 15px;
+}*/
 
 .content p {
-	max-width: 90%;
+	max-width: 80%;
 	font-size: 0.9em;
-	margin-top: -15px;
+	margin-top: -10px;
+	padding-top: -10px;
 	padding-left: 80px;
 }
 
@@ -174,16 +183,19 @@ CONTENT
 
 
 .images {
-	padding-left: 70px;
+	padding-left: 80px;
 }
 
 .content-image {
-	max-width: 400px;
+	max-width: 250px;
+	max-height: 200px;
 	border-radius: 5%;
 }
 
 section div h2 {
-	margin-top: 0;
-	padding-top: 10px;
+	padding-top: 12px;
 	padding-left: 80px;
+	font-size: 1em;
+	margin-top: 0;
 }
+
