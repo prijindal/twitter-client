@@ -1,15 +1,17 @@
 <div class="content" id="{{tweet.id}}">
   <img src="{{tweet.user.profile_image_url}}" alt="content-user" class="user-pic">
-  <h2>{{tweet.user.name}}</h2>
-  <p>{{> text}}</p>
-    <br />
-  <div class="images">
-    {{#tweet.extended_entities.media}}
-      <img src="{{media_url}}" alt="content-image" class="content-image">
-    {{/tweet.extended_entities.media}}
-    {{^tweet.extended_entities.media}}
-      <img class="content-image" />
-    {{/tweet.extended_entities.media}}
-    <br />
+  <div class="content-sub">
+    <h2>{{tweet.user.name}}</h2>
+    <p>{{> text}}</p>
+      <br />
+    <div class="images">
+      {{#tweet.extended_entities.media}}
+        <img src="{{media_url}}" alt="content-image" class="content-image">
+      {{/tweet.extended_entities.media}}
+      {{^tweet.extended_entities.media}}
+        <img class="content-image" />
+      {{/tweet.extended_entities.media}}
+      <br />
+    </div>
   </div>
 </div>
