@@ -5,6 +5,7 @@ const localforage = require('localforage')
 const jQuery = require('jquery')
 const mustache = require('mustache');
 const {ipcRenderer} = require('electron')
+const moment = require('moment');
 const getOauth = require('../js/helpers/getOauth');
 const config = require('../config').twitter;
 
@@ -94,12 +95,14 @@ function renderTweets(tweets, refresh=true) {
     section.html('');
   }
   tweets.forEach((tweet) => {
+    // console.log(tweet)
     let html;
+    const time = moment(tweet.created_at).fromNow();
     if (tweet.retweeted_status) {
-      let feedHTML = mustache.render(feed, { tweet: tweet.retweeted_status }, { text:getText(tweet.retweeted_status) });
+      let feedHTML = mustache.render(feed, { tweet: tweet.retweeted_status, time }, { text:getText(tweet.retweeted_status) });
       html = mustache.render(retweet, { tweet } ,{ feed: feedHTML })
     } else {
-      html = mustache.render(feed, { tweet },{ text: getText(tweet) });
+      html = mustache.render(feed, { tweet, time },{ text: getText(tweet) });
     }
     section.append(html);
   })
