@@ -52,6 +52,7 @@ function renderProfile(account) {
   if(!account) return ;
   const link_color = '#' + account.profile_link_color
   jQuery('nav a').css('border-bottom-color', link_color)
+  jQuery('html').append(`<style>.retweet .retweeter a{ color: ${link_color}; }</style>`)
   jQuery('.loading-bar .loading-inner').css('background-color', link_color)
   jQuery('#profile-pic')[0].src = account.profile_image_url
   localforage.setItem('account', account)
