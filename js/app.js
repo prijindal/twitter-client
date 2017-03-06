@@ -97,7 +97,7 @@ function renderTweets(tweets, refresh=true) {
   tweets.forEach((tweet) => {
     // console.log(tweet)
     let html;
-    const time = moment(tweet.created_at).fromNow();
+    const time = moment(new Date(tweet.created_at)).fromNow();
     if (tweet.retweeted_status) {
       let feedHTML = mustache.render(feed, { tweet: tweet.retweeted_status, time }, { text:getText(tweet.retweeted_status) });
       html = mustache.render(retweet, { tweet } ,{ feed: feedHTML })
