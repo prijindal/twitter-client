@@ -140,6 +140,10 @@ CONTENT
 	margin-top: 95px;
 }
 
+.content-sub {
+	padding-left: 80px;
+}
+
 .content {
 	background: #e6eae3;
 	margin-top: 5px;
@@ -151,7 +155,6 @@ CONTENT
 
 .retweet .retweeter {
 	padding-left: 80px;
-	border: 2px solid #000;
 	font-size: 0.8em;
 	color: #2f2e2e;
 }
@@ -161,16 +164,20 @@ CONTENT
 	color: #2f2e2e;
 }
 
+.retweet .retweeter a:hover{
+	text-decoration: underline;
+	color: #1da1f2;
+}
+
 /*.retweet .content {
 	margin-top: 15px;
 }*/
 
 .content p {
-	max-width: 80%;
+	max-width: 95%;
 	font-size: 0.9em;
 	margin-top: -10px;
 	padding-top: -10px;
-	padding-left: 80px;
 }
 
 .user-pic {
@@ -181,11 +188,6 @@ CONTENT
 	border-radius: 30%;
 }
 
-
-.images {
-	padding-left: 80px;
-}
-
 .content-image {
 	max-width: 250px;
 	max-height: 200px;
@@ -194,7 +196,6 @@ CONTENT
 
 section div h2 {
 	padding-top: 12px;
-	padding-left: 80px;
 	font-size: 1em;
 	margin-top: 0;
 }
