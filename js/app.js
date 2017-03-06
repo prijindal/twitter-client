@@ -50,7 +50,9 @@ function apiGetRequest(url, params) {
 
 function renderProfile(account) {
   if(!account) return ;
-  // console.log(account)
+  const link_color = '#' + account.profile_link_color
+  jQuery('nav a').css('border-bottom-color', link_color)
+  jQuery('.loading-bar .loading-inner').css('background-color', link_color)
   jQuery('#profile-pic')[0].src = account.profile_image_url
   localforage.setItem('account', account)
 }
@@ -81,8 +83,6 @@ function getText(tweet) {
 
   mentionsReplacement.forEach((data) => {text = mentionTextReplacer(data, text, `https://twitter.com/${data.mention.screen_name}`)});
   urlsReplacement.forEach((data) => {text = mentionTextReplacer(data, text, data.mention.expanded_url)});
-
-  console.log(hashtags, symbols, urls)
   return text
 }
 

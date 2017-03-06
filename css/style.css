@@ -80,13 +80,15 @@ nav a{
 	font-weight: 600;
 	font-size: 0.7em;
 	-webkit-app-region: no-drag;
-	border-bottom: 4px solid #fff;
+	border-bottom-width: 4px;
+	border-bottom-style: none;
+	border-bottom-color: #1da1f2;
 	padding-top: 6px;
 }
 
 nav a:hover{
 	padding-top: 0;
-	border-bottom: 4px solid #1da1f2;
+	border-bottom-style: solid;
 	font-size: 1em;
 }
 
@@ -115,7 +117,7 @@ LOADING BAR
 	height: 3px;
 	width: 50%;
 	border-radius: 2px;
-	background: #1da1f2;
+	background-color: #1da1f2;
 	position: relative;
 	animation: slide-loop 1s infinite linear;
 }
@@ -198,4 +200,3 @@ section div h2 {
 	font-size: 1em;
 	margin-top: 0;
 }
-
