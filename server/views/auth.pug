@@ -1,7 +1,7 @@
 script.
   if (window.opener) {
     window.opener.postMessage({
-      oauthToken: "#{accessToken}",
-      oauthSecret: "#{refreshToken}"
+      token: "#{accessToken}",
+      secret: "#{refreshToken}"
     });
   }

@@ -15,17 +15,17 @@ function createWindow () {
     // resizable: false,
   })
 
-  let config = 'http://localhost:4200';
+  let url = 'http://localhost:4200';
 
   if(process.env.NODE_ENV === "production") {
-      config = url.format({
+      url = url.format({
         pathname: path.join(__dirname, 'html/', 'index.html'),
         protocol: 'file:',
         slashes: true
     })
   }
 
-  win.loadURL(config);
+  win.loadURL(url);
   // and load the index.html of the app.
 
   // Open the DevTools.
