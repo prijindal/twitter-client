@@ -1,3 +1,22 @@
-<p>
-  twitter works!
-</p>
+<header>
+  <div>
+    <ul>
+      <li><a href="#"><img id="profile-pic"></a></li>
+      <li><a id="sign-out" (click)="logout()">Sign Out</a></li>
+    </ul>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a (click)="refreshTweets();"><img src="../img/home.png" /><br />Home</a></li>
+      <li><a href="#"><img src="../img/tweet.png"><br />Tweet</a></li>
+      <li><a href="#"><img src="../img/search.png"><br />Search</a></li>
+    </ul>
+  </nav>
+  <div id="loading-bar" class="loading-bar hidden">
+    <div class="loading-inner"></div>
+  </div>
+</header>
+<section id="feed">
+  <div></div>
+</section>
