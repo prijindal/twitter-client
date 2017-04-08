@@ -23,6 +23,6 @@
 </header>
 <section id="feed" *ngIf="tweets">
   <div *ngFor="let tweet of tweets">
-    {{tweet | json}}
+    <app-tweet [tweet]="tweet"></app-tweet>
   </div>
 </section>

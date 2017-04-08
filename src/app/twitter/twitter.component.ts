@@ -21,7 +21,6 @@ export class TwitterComponent implements OnInit {
       this.account = account;
     });
     this.tweetsService.tweetsEvent.subscribe((tweets) => {
-      console.log(tweets);
       this.tweets = tweets;
     });
   }
@@ -37,5 +36,4 @@ export class TwitterComponent implements OnInit {
     electron.ipcRenderer.send('logout');
     this.router.navigate(['login']);
   }
-
 }

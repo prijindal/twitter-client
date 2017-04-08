@@ -1,0 +1,18 @@
+<div class="content" [id]="tweet.id">
+  <img [src]="tweet.user.profile_image_url" alt="content-user" class="user-pic">
+  <div class="content-sub">
+    <div class="">
+      <h2>{{tweet.user.name}}</h2>
+      <span class="time">{{renderTime()}}</span>
+    </div>
+    <p [innerHTML]="renderText()"></p>
+    <br />
+    <div class="images" *ngIf="tweet.extended_entities">
+      <img *ngFor="let media of tweet.extended_entities.media"
+          [src]="media.media_url"
+          alt="content-image" class="content-image"
+      />
+      <br />
+    </div>
+  </div>
+</div>

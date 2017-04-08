@@ -19,6 +19,7 @@ export class TweetsService {
   constructor(
     private loginService: LoginService
   ) {
+    this.repopulate();
     this.initClient();
   }
 
