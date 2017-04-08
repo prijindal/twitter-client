@@ -6,13 +6,15 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
+import { LoginComponent } from './login/login.component';
 
 import { LoginService } from './login.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    IndexComponent
+    IndexComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -33,6 +33,7 @@
     "pug": "^2.0.0-beta11",
     "rxjs": "^5.1.0",
     "sanitize.css": "^5.0.0",
+    "twitter": "^1.7.0",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {

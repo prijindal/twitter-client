@@ -10,7 +10,7 @@ interface Oauth {
 export class LoginService {
   oauth: Oauth;
 
-  constructor() { }
+  constructor() {}
 
   public async getOauth(): Promise<Oauth> {
     await localforage.ready();
@@ -20,9 +20,12 @@ export class LoginService {
   }
 
   public async setOauth(oauth: Oauth): Promise<void> {
-    await localforage.ready();
     await localforage.setItem('oauth', oauth);
     this.oauth = oauth;
+  }
+
+  public async logout(): Promise<void> {
+    await localforage.clear();
   }
 
 }
